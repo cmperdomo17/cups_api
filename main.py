@@ -10,7 +10,6 @@ class CupsCode(BaseModel):
     codigo_sin_puntos: str
     codigo_con_puntos: str
     descripcion: str
-    trazabilidad: str
 
 # Configuración de la app
 app = FastAPI(
