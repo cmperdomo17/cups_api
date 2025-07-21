@@ -88,6 +88,12 @@ async def get_cups_by_description(
         raise HTTPException(status_code=404, detail=f"No se encontró ningún código con la descripción que contenga '{descripcion}'")
     return result
 
+@app.get("/cups/seis", response_model=List[CupsCode], summary="Listar códigos CUPS de 6 dígitos")
+async def get_cups_seis():
+    cups_data = get_all_cups()
+    filtrados = [item for item in cups_data if len(item["codigo_sin_puntos"]) == 6]
+    return filtrados
+
 # Ejecutar la app
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
